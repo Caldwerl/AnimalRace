@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <script>
+
+    function Animal(name, speed, focus){
+      this.name = name;
+      this.speed = speed;
+      this.focus = focus;
+      this.position = 0;
+
+      this.run = function(){
+        if(Math.random() * 10 < this.focus){
+          this.position += this.speed;
+        }
+        return this.position;
+      }
+    }
+
+    function race(contestant1, contestant2, distance){
+
+      alert("The " + distance + " yard race has begun!");
+
+      while(contestant1.position < distance &&
+            contestant2.position < distance){
+        contestant1.run();
+        contestant2.run();
+      }
+
+      if(contestant1.position >= distance &&
+         contestant2.position >= distance){
+        alert("The race has ended in a tie!");
+      }
+      else if(contestant1.position >= distance){
+        alert(contestant1.name + " has won the race with a lead of " +
+          (contestant1.position - contestant2.position) +
+          " yards! Better luck next time "+ contestant2.name);
+      }
+      else{
+        alert(contestant2.name + " has won the race with a lead of " +
+          (contestant2.position - contestant1.position) +
+          " yards! Better luck next time " + contestant1.name);
+      }
+    }
+
+    var turtle = new Animal("Beth", 2, 10);
+    var hare = new Animal("Peter", 4, 4);
+
+    race(turtle, hare, 100);
+
+  </script>
+</html>
